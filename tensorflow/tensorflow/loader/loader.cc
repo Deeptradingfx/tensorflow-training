@@ -1,6 +1,10 @@
 #include "tensorflow/core/public/session.h"
 #include "tensorflow/core/platform/env.h"
 
+// when compiling this program, run `bazel build` like this:
+// bazel build -c opt --config=cuda --local_resources 5120,2.0,1.0 //tensorflow/cc:tutorials_example_traine
+// bazel has a resource-hogging problems
+
 using namespace tensorflow;
 
 int main(int argc, char* argv[]) {
