@@ -58,6 +58,9 @@ int main(int argc, char* argv[]) {
 	// and convert the node to a scalar representation
 	auto output_c = outputs[0].scalar<float>();
 
+	// there are similar methods for vectors and matrices here:
+	// https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/public/tensor.h
+
 	// Print the results
 	std::cout << outputs[0].DebugString() << "\n";
 	std::cout << output_c << "\n";
