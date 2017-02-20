@@ -65,3 +65,16 @@ with tf.Session() as sess:
     sess.run([fixW, fixB])
     print(sess.run(linear_model, {x: [1, 2, 3, 4]}))
     print(sess.run(loss, {x: [1, 2, 3, 4], y: [0, -1, -2, -3]}))
+
+# tf.train API
+
+optimizer = tf.train.GradientDescentOptimizer(0.01)
+train = optimizer.minimize(loss)
+
+with tf.Session() as sess:
+    sess.run(init)
+    for i in range(1000):
+        sess.run(train, {x: [1, 2, 3, 4], y: [0, -1, -2, -3]})
+
+    print('results:', sess.run([W, b]))
+    print('loss:', sess.run(loss, {x: [1, 2, 3, 4], y: [0, -1, -2, -3]}))
