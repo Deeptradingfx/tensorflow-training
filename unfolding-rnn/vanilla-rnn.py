@@ -14,19 +14,17 @@ states = tf.scan(step,
                  tf.transpose(rnn_inputs, [1, 0, 2]),
                  initializer=init_state)
 
-xav_init = tf.contrib.layers.xavier_initializer
-
-W = tf.get_variable('W', shape=[state_size, state_size],
-                    initializer=xav_init())
-U = tf.get_variable('U', shape=[state_size, state_size],
-                    initializer=xav_init())
-b = tf.get_variable('b', shape=[state_size],
-                    initializer=tf.constant_initializer(0.))
-
 def step(hprev, x):
-    return tf.tanh(
-        tf.matmul(hprev, W) + 
-        tf.matmul(x, U) + b)
+    xav_init = tf.contrib.layers.xavier_initializer
+
+    W = tf.get_variable('W', shape=[state_size, state_size],
+                    initializer=xav_init())
+    U = tf.get_variable('U', shape=[state_size, state_size],
+                    initializer=xav_init())
+    b = tf.get_variable('b', shape=[state_size],
+                    initializer=tf.constant_initializer(0.))
+    h = tf.tanh(tf.matmul(hprev, W) + tf.matmul(x, U) + b)
+    return h
 
 V = tf.get_variable('V', shape=[state_size, num_classes],
                    initializer=xav_init())
