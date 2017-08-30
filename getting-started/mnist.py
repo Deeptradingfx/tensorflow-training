@@ -63,9 +63,11 @@ class LogisticRegression:
 
                 feed_dict = {self.x: batch_xs, self.y: batch_ys}
 
-                _, loss, accuracy = sess.run([self.train_op, self.cross_entropy, self.accuracy_op], feed_dict=feed_dict)
+                _ = sess.run([self.train_op], feed_dict=feed_dict)
 
                 if step % 100 == 0:
+                    loss, accuracy = sess.run([self.cross_entropy, self.accuracy_op], feed_dict=feed_dict)
+
                     print('step [{}] -- loss: {}, accuracy: {}'.format(step, loss, accuracy))
 
             feed_dict = {self.x: self.data_input.test.images, self.y: self.data_input.test.labels}
