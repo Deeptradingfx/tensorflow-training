@@ -59,9 +59,10 @@ class GruSvm:
                 # [BATCH_SIZE, NUM_CHUNKS, CHUNK_SIZE]
                 x_input = tf.placeholder(dtype=tf.float32, shape=[None, NUM_CHUNKS, CHUNK_SIZE], name='x_input')
 
-                # []
+                # [None, NUM_CLASSES]
                 y_input = tf.placeholder(dtype=tf.float32, shape=[None, NUM_CLASSES], name='y_input')
-
+                
+            # the state of the RNN; remembers the necessary information
             initial_state = tf.placeholder(dtype=tf.float32, shape=[None, CELL_SIZE], name='initial_state')
 
             cell = tf.contrib.rnn.GRUCell(CELL_SIZE)

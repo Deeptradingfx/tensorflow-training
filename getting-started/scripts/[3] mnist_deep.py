@@ -45,7 +45,7 @@ class CNN:
             # [BATCH_SIZE, 10]
             y = tf.placeholder(dtype=tf.float32, shape=[None, 10], name='actual_label')
 
-            # First layer
+            # First convolutional layer
             W_conv1 = self.weight_variable([5, 5, 1, 32])
             b_conv1 = self.bias_variable([32])
 
@@ -54,7 +54,7 @@ class CNN:
             h_conv1 = tf.nn.relu(self.conv2d(x_image, W_conv1) + b_conv1)
             h_pool1 = self.max_pool_2x2(h_conv1)
 
-            # Second layer
+            # Second convolutional layer
             W_conv2 = self.weight_variable([5, 5, 32, 64])
             b_conv2 = self.bias_variable([64])
 
@@ -69,13 +69,16 @@ class CNN:
             h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
 
             # Dropout
+            # For avoiding overfitting
             keep_prob = tf.placeholder(tf.float32)
             h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
 
             # Readout layer
             W_fc2 = self.weight_variable([1024, 10])
             b_fc2 = self.bias_variable([10])
-
+            
+            # prediction to be squashed down by
+            # softmax to {0, 1}
             y_conv = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
 
             # Train and evaluate model (optimize)
@@ -103,17 +106,23 @@ class CNN:
             sess.run(init)
 
             for index in range(20000):
+                # train by batch of 50
                 batch_x, batch_y = mnist.train.next_batch(50)
-
+                
+                # input dictionary with dropout of 50%
                 feed_dict = {self.x: batch_x, self.y: batch_y, self.keep_prob: 0.5}
-
+                
+                # run the train op
                 sess.run(self.train_op, feed_dict=feed_dict)
-
+                
+                # every 100th step and at 0,
                 if index % 100 == 0:
                     feed_dict = {self.x: batch_x, self.y: batch_y, self.keep_prob: 1.0}
-
+                    
+                    # get the accuracy of training
                     train_accuracy = sess.run(self.accuracy_op, feed_dict=feed_dict)
-
+                    
+                    # display the training accuracy
                     print('step: {}, training accuracy: {}'.format(index, train_accuracy))
 
             feed_dict = {self.x: self.data_input.test.images,
@@ -136,10 +145,12 @@ class CNN:
 
     @staticmethod
     def conv2d(x, W):
+        """Produces a filter for a subregion of an image"""
         return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
 
     @staticmethod
     def max_pool_2x2(x):
+        """Downsample the image based on the filter of conv2d"""
         return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
 

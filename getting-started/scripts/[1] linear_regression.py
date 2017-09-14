@@ -39,16 +39,27 @@ class LinearRegression:
         self.data_input = data_input
 
         def __graph__():
+            # initialize weight matrix
             weight = tf.Variable(initial_value=[.3], name='weight', dtype=tf.float32)
+            
+            # placeholder for input data
             x_input = tf.placeholder(dtype=tf.float32, name='x_input')
+            
+            # initialize the bias matrix
+            # bias is used to avoid dead neurons
             bias = tf.Variable(initial_value=[-.3], name='bias', dtype=tf.float32)
-
+            
+            # placeholder for actual data
             y = tf.placeholder(dtype=tf.float32, name='actual_values')
-
+            
+            # linear regression equation
+            # y = Wx + b
             linear_model = weight * x_input + bias
-
+            
+            # determine the amount of error in the regression
             loss = tf.reduce_sum(tf.square(linear_model - y))
-
+            
+            # train the regression to reach optimal parameters W and b
             train_op = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(loss)
 
             self.weight = weight
@@ -70,18 +81,24 @@ class LinearRegression:
             sess.run(init_op)
 
             for step in range(1000):
+                # load the data
                 x_train, y_train = self.data_input
-
+                
+                # create input dictionary to feed to the train operation
                 feed_dict = {self.x_input: x_train, self.y: y_train}
-
+                
+                # run the train operation with the previously-defined input dict
                 sess.run(self.train_op, feed_dict=feed_dict)
-
+                
+                # get the learnt parameters and the error (loss)
                 curr_w, curr_b, curr_loss = sess.run([self.weight, self.bias, self.loss], feed_dict=feed_dict)
-
+                
+            # print the learn parameters of the regression and its loss
             print("W: {}, b: {}, loss: {}".format(curr_w, curr_b, curr_loss))
 
 
 if __name__ == '__main__':
+    # arbitrary values to test
     data = [[1, 2, 3, 4], [0, -1, -2, -3]]
 
     model = LinearRegression(data_input=data)
