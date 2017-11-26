@@ -1,11 +1,10 @@
 ### getting-started
 
-This component contains the Jupyter Notebooks for lectures on the following materials:
-* Mathematics for Machine Learning
-* Brief Introduction to Artificial Intelligence & Machine Learning
-* Softmax Regression for MNIST Classification
-* Convolutional Neural Network (CNN) for MNIST Classification
-* Multilayer Perceptron for MNIST Classification
-* Recurrent Neural Network (RNN) for MNIST Classification
+This component contains the learning materials for the following topics:
 
-Found in the `jupyter-notebooks` folder. On the other hand, a separate folder for script implementations can be found in `scripts`.
+* Mathematics for Machine Learning [[notebook](https://github.com/AFAgarap/tensorflow-training/blob/master/getting-started/jupyter-notebooks/%5B0%5D%20Mathematics%20for%20Machine%20Learning.ipynb)]
+* Brief Introduction to Artificial Intelligence & Machine Learning [[notebook](https://github.com/AFAgarap/tensorflow-training/blob/master/getting-started/jupyter-notebooks/%5B1%5D%20Brief%20Introduction%20to%20Artificial%20Intelligence%20%26%20Machine%20Learning.ipynb)]
+* Softmax Regression for MNIST Classification [[notebook](https://github.com/AFAgarap/tensorflow-training/blob/master/getting-started/jupyter-notebooks/%5B2%5D%20Softmax%20Regression%20for%20MNIST%20Classification.ipynb)] [[code](https://github.com/AFAgarap/tensorflow-training/blob/master/getting-started/scripts/%5B2%5D%20mnist.py)]
+* Convolutional Neural Network (CNN) for MNIST Classification [[notebook](https://github.com/AFAgarap/tensorflow-training/blob/master/getting-started/jupyter-notebooks/%5B3%5D%20Convolutional%20Neural%20Network%20for%20MNIST%20Classification.ipynb)] [[code](https://github.com/AFAgarap/tensorflow-training/blob/master/getting-started/scripts/%5B3%5D%20mnist_deep.py)]
+* Multilayer Perceptron for MNIST Classification [[notebook](https://github.com/AFAgarap/tensorflow-training/blob/master/getting-started/jupyter-notebooks/%5B4%5D%20Multilayer%20Perceptron%20for%20MNIST%20Classification.ipynb)] [[code](https://github.com/AFAgarap/tensorflow-training/blob/master/getting-started/scripts/%5B4%5D%20mnist_mlp.py)]
+* Recurrent Neural Network (RNN) for MNIST Classification [[notebook](https://github.com/AFAgarap/tensorflow-training/blob/master/getting-started/jupyter-notebooks/%5B5%5D%20Recurrent%20Neural%20Network%20for%20MNIST%20Classification.ipynb)] [[code](https://github.com/AFAgarap/tensorflow-training/blob/master/getting-started/scripts/%5B5%5D%20mnist_gru.py)]
