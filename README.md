@@ -1,6 +1,21 @@
 tensorflow-training
 -------------------
 
+## Dependencies
+Install the library dependencies for this project by executing the `setup.sh`:
+
+```
+chmod +x setup.sh
+./setup.sh
+```
+
+Or you may install the requirements manually:
+
+```
+pip install -r requirements.txt
+```
+
+## Contents
 Scripts in this repository are implementations based on tutorials for TensorFlow.
 
 * [getting-started](https://github.com/AFAgarap/tensorflow-training/tree/master/getting-started) is  based on the [Getting Started](https://www.tensorflow.org/get_started/) from the official website of [TensorFlow](https://www.tensorflow.org/).
