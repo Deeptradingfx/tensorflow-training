@@ -107,7 +107,7 @@ class CNN:
 
             for index in range(20000):
                 # train by batch of 50
-                batch_x, batch_y = mnist.train.next_batch(50)
+                batch_x, batch_y = self.data_input.train.next_batch(50)
                 
                 # input dictionary with dropout of 50%
                 feed_dict = {self.x: batch_x, self.y: batch_y, self.keep_prob: 0.5}
