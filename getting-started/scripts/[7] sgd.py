@@ -22,7 +22,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""SGD implementation for 2-layer neural network with sigmoid function"""
+"""
+SGD implementation for 2-layer neural network with sigmoid function
+
+You may refer to the accompanying documentation on the SGD algorithm: `sgd-algorithm.md`.
+"""
 import numpy as np
 from numpy.random import randn
 
