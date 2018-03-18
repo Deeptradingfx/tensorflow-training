@@ -1,3 +1,25 @@
+# MIT License
+# 
+# Copyright (c) 2018 Abien Fred Agarap
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 import math
 import numpy as np
 import operator
@@ -46,12 +68,17 @@ def main():
     features = datasets.load_iris().data
     labels = datasets.load_iris().target
 
-    features = StandardScaler().fit_transform(features)
+#    features = StandardScaler().fit_transform(features)
 
     train_features, test_features, train_labels, test_labels = train_test_split(features,
                                                                                 labels,
                                                                                 test_size=0.3,
                                                                                 stratify=labels)
+    scaler = StandardScaler()
+    scaler.fit(train_features)
+    train_features = scaler.transform(train_features)
+    test_features = scaler.transform(test_features)
+
     train_data = np.c_[train_features, train_labels]
     test_data = np.c_[test_features, test_labels]
     predictions = []
