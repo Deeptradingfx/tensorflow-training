@@ -35,3 +35,10 @@ def load_dataset(dataset_path, one_hot=False):
         labels = to_categorical(labels)
 
     return features, labels
+
+def load_image(image_path):
+    image = Image.open(image_path)
+    image = image.resize((32, 32))
+    image = np.asarray(image)
+    image = np.reshape(image, (-1, 32, 32, 3))
+    return image
